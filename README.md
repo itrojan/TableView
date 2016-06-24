@@ -1,8 +1,8 @@
-AlertView
-=================
-[ ![Download](https://api.bintray.com/packages/itrojan/maven/alertview/images/download.svg) ](https://bintray.com/itrojan/maven/alertview/_latestVersion)
+TableView
+=========
+[ ![Download](https://api.bintray.com/packages/itrojan/maven/tableview/images/download.svg) ](https://bintray.com/itrojan/maven/tableview/_latestVersion)
 
-A Custom AlertView.
+A Custom TableView.
 
 # Usage
 
@@ -10,6 +10,6 @@ A Custom AlertView.
 
 ```groovy
 dependencies {
-    compile 'com.aihook:alertview:1.0.0'
+    compile 'com.aihook:tableview:1.0.0'
 }
 ```

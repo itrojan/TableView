@@ -70,6 +70,7 @@ public interface TableAdapter {
 	 *            The column of the item within the adapter's data table of the
 	 *            item whose view we want. If the column is <code>-1</code> it
 	 *            is the header.
+	 * @param convertView view
 	 * @param parent
 	 *            The parent that this view will eventually be attached to.
 	 * @return A View corresponding to the data at the specified row and column.
