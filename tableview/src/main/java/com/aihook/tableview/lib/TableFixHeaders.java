@@ -1,7 +1,5 @@
 package com.aihook.tableview.lib;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
@@ -21,10 +19,7 @@ import java.util.List;
 /**
  * This view shows a table which can scroll in both directions. Also still
  * leaves the headers fixed.
- * 
- * @author Brais Gabín (InQBarna)
  */
-@SuppressLint("NewApi")
 public class TableFixHeaders extends ViewGroup {
 	private int currentX;
 	private int currentY;
@@ -37,7 +32,6 @@ public class TableFixHeaders extends ViewGroup {
 	private int[] widths;
 	private int[] heights;
 
-	@SuppressWarnings("unused")
 	private View headView;
 	private List<View> rowViewList;
 	private List<View> columnViewList;
@@ -107,13 +101,13 @@ public class TableFixHeaders extends ViewGroup {
 
 		this.shadows = new ImageView[4];
 		this.shadows[0] = new ImageView(context);
-		this.shadows[0].setImageResource(R.drawable.tablefixheader_shadow_left);
+		this.shadows[0].setImageResource(R.drawable.tableheader_shadow_left);
 		this.shadows[1] = new ImageView(context);
-		this.shadows[1].setImageResource(R.drawable.tablefixheader_shadow_top);
+		this.shadows[1].setImageResource(R.drawable.tableheader_shadow_top);
 		this.shadows[2] = new ImageView(context);
-		this.shadows[2].setImageResource(R.drawable.tablefixheader_shadow_right);
+		this.shadows[2].setImageResource(R.drawable.tableheader_shadow_right);
 		this.shadows[3] = new ImageView(context);
-		this.shadows[3].setImageResource(R.drawable.tablefixheader_shadow_bottom);
+		this.shadows[3].setImageResource(R.drawable.tableheader_shadow_bottom);
 
 		this.shadowSize = getResources().getDimensionPixelSize(R.dimen.tablefixheader_shadow_size);
 
@@ -559,7 +553,6 @@ public class TableFixHeaders extends ViewGroup {
 		return sum;
 	}
 
-	@SuppressLint("DrawAllocation")
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		if (needRelayout || changed) {
@@ -677,10 +670,10 @@ public class TableFixHeaders extends ViewGroup {
 		}
 	}
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	@SuppressWarnings("deprecation")
 	private void setAlpha(ImageView imageView, float alpha) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			imageView.setImageAlpha((int) alpha);
+		} else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
 			imageView.setAlpha(alpha);
 		} else {
 			imageView.setAlpha(Math.round(alpha * 255));

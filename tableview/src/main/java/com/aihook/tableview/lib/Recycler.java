@@ -6,8 +6,6 @@ import java.util.Stack;
 
 /**
  * The Recycler facilitates reuse of views across layouts.
- * 
- * @author Brais Gabín (InQBarna)
  */
 public class Recycler {
 

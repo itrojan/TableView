@@ -9,9 +9,6 @@ import android.view.ViewGroup;
  * underlying data for that view. The Adapter provides access to the data items.
  * The Adapter is also responsible for making a View for each item in the data
  * set.
- * 
- * @author Brais Gabín (InQBarna)
- * @see TableFixHeaders
  */
 public interface TableAdapter {
 
