@@ -10,6 +10,6 @@ A Custom TableView.
 
 ```groovy
 dependencies {
-    compile 'com.aihook:tableview:1.0.0'
+    compile 'com.aihook:tableview:1.0.1'
 }
 ```
