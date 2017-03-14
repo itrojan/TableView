@@ -53,3 +53,7 @@ target/
 
 # systemfile
 .DS_Store
+app/libs/
+app/src/main/res/drawable/
+projectFilesBackup/
+tableview/libs/

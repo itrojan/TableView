@@ -3,6 +3,8 @@ package com.aihook.tableview.lib;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,18 +29,21 @@ public class TableDataAdapter extends BaseTableAdapter {
 		this.context = context;
 		this.inflater = LayoutInflater.from(context);
 		this.density = context.getResources().getDisplayMetrics().density;
-		this.height = Math.round(density * 40);
+		System.out.println(this.density);
+		this.height = Math.round(density * 30);
 		this.mList = list;
 		if (widths == null) {
 			this.widths = new int[mList.get(0).size()];
 			Paint mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 			mTextPaint.setColor(Color.WHITE);
+			DisplayMetrics dm = context.getResources().getDisplayMetrics();
+			mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, dm));
 			String displayText;
-			int widthTemp = 0;
+			int widthTemp;
 			for (int i = 0; i < mList.size(); i++) {
 				for (int j = 0; j < mList.get(i).size(); j++) {
 					displayText = mList.get(i).get(j);
-					widthTemp = Math.round((mTextPaint.measureText(displayText) + (16 * this.density)));
+					widthTemp = Math.round(mTextPaint.measureText(displayText));
 					if (widthTemp > this.widths[j]) {
 						this.widths[j] = widthTemp;
 					}
