@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
             mList.add(arrayList);
         }
-        TableDataAdapter tableDataAdapter = new TableDataAdapter(this, mList);
+        TableDataAdapter tableDataAdapter = new TableDataAdapter(this, mList, 40, 16);
         table.setAdapter(tableDataAdapter);
         System.out.println(this.getResources().getDisplayMetrics().density);
     }

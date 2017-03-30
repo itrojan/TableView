@@ -19,31 +19,40 @@ public class TableDataAdapter extends BaseTableAdapter {
 	private int height;
 	private float density;
 	private int[] widths;
+	private float mTextSize = 12;
 	private ArrayList<ArrayList<String>> mList;
 
 	public TableDataAdapter(Context context, ArrayList<ArrayList<String>> list) {
-		this(context, list, null);
+		this(context, list, null, 30, 12);
 	}
 
-	public TableDataAdapter(Context context, ArrayList<ArrayList<String>> list, int[] widths) {
+	public TableDataAdapter(Context context, ArrayList<ArrayList<String>> list, float textSize) {
+		this(context, list, null, 30, textSize);
+	}
+
+	public TableDataAdapter(Context context, ArrayList<ArrayList<String>> list, float height, float textSize) {
+		this(context, list, null, height, textSize);
+	}
+
+	public TableDataAdapter(Context context, ArrayList<ArrayList<String>> list, int[] widths, float height, float textSize) {
 		this.context = context;
 		this.inflater = LayoutInflater.from(context);
 		this.density = context.getResources().getDisplayMetrics().density;
-		System.out.println(this.density);
-		this.height = Math.round(density * 30);
+		this.height = Math.round(density * height);
 		this.mList = list;
+		this.mTextSize = textSize;
 		if (widths == null) {
 			this.widths = new int[mList.get(0).size()];
 			Paint mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 			mTextPaint.setColor(Color.WHITE);
 			DisplayMetrics dm = context.getResources().getDisplayMetrics();
-			mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, dm));
+			mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSize, dm));
 			String displayText;
 			int widthTemp;
 			for (int i = 0; i < mList.size(); i++) {
 				for (int j = 0; j < mList.get(i).size(); j++) {
 					displayText = mList.get(i).get(j);
-					widthTemp = Math.round(mTextPaint.measureText(displayText));
+					widthTemp = Math.round(mTextPaint.measureText(displayText) + 2 * density);
 					if (widthTemp > this.widths[j]) {
 						this.widths[j] = widthTemp;
 					}
@@ -86,11 +95,12 @@ public class TableDataAdapter extends BaseTableAdapter {
 	private void setText(View view, final String text) {
 		TextView tv = (TextView) view.findViewById(android.R.id.text1);
 		tv.setText(text);
+		tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTextSize);
 	}
 
 	@Override
 	public int getWidth(int column) {
-		return Math.round(widths[column + 1] * density);
+		return Math.round(widths[column + 1]);
 	}
 
 	@Override

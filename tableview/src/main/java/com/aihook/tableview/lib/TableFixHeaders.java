@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -61,6 +62,9 @@ public class TableFixHeaders extends ViewGroup {
 	private int touchSlop;
 	
 	private OnCellClickListener mOnCellClickListener = null;
+	private OnCellLongClickListener mOnCellLongClickListener = null;
+
+	private Context mContext;
 
 	/**
 	 * Simple constructor to use when creating a view from code.
@@ -116,6 +120,7 @@ public class TableFixHeaders extends ViewGroup {
 		this.touchSlop = configuration.getScaledTouchSlop();
 		this.minimumVelocity = configuration.getScaledMinimumFlingVelocity();
 		this.maximumVelocity = configuration.getScaledMaximumFlingVelocity();
+		this.mContext = context;
 	}
 
 	/**
@@ -762,11 +767,15 @@ public class TableFixHeaders extends ViewGroup {
 	public void setOnCellClickListener(OnCellClickListener listener) {
         mOnCellClickListener = listener;
     }
-	
-	public final OnCellClickListener getOnCellClickListener() {
-        return mOnCellClickListener;
-    }
-	
+
+	public interface OnCellLongClickListener {
+		void onCellLongClick(View view, int row, int column);
+	}
+
+	public void setOnCellLongClickListener(OnCellLongClickListener listener) {
+		mOnCellLongClickListener = listener;
+	}
+
 	private class ClickCellView{
 		private int row;
 		private int column;
@@ -784,6 +793,15 @@ public class TableFixHeaders extends ViewGroup {
 				public void onClick(View v) {
 					if (mOnCellClickListener != null)
 						mOnCellClickListener.onItemClick(view, row, column);
+				}
+			});
+
+			view.setOnLongClickListener(new OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					if (mOnCellLongClickListener != null)
+						mOnCellLongClickListener.onCellLongClick(view, row, column);
+					return false;
 				}
 			});
 		}
