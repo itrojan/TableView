@@ -52,7 +52,7 @@ public class TableDataAdapter extends BaseTableAdapter {
 			for (int i = 0; i < mList.size(); i++) {
 				for (int j = 0; j < mList.get(i).size(); j++) {
 					displayText = mList.get(i).get(j);
-					widthTemp = Math.round(mTextPaint.measureText(displayText) + 2 * density);
+					widthTemp = Math.round(mTextPaint.measureText(displayText) + 3 * density);
 					if (widthTemp > this.widths[j]) {
 						this.widths[j] = widthTemp;
 					}
