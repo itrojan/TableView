@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 23
-        versionCode 10
-        versionName "1.1.0"
+        versionCode 11
+        versionName "1.1.1"
     }
     buildTypes {
         release {
@@ -37,7 +37,7 @@ ext {
     siteUrl = 'https://github.com/itrojan/TableView'
     gitUrl = 'https://github.com/itrojan/TableView.git'
 
-    libraryVersion = '1.1.0'
+    libraryVersion = '1.1.1'
 
     developerId = 'itrojan'
     developerName = 'itrojan'
